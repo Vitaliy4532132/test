@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+.vercel
+
+# raw source dumps already organized into assets/
+/*.mp4
+/unnamed*.jpg
+/unnamed*.png
+/logo.jpg
