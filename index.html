@@ -639,7 +639,7 @@
     }
   };
 
-  function applyLang(lang){
+  function setLangText(lang){
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const val = translations[lang][el.dataset.i18n];
@@ -654,9 +654,21 @@
     document.getElementById('langRu').classList.toggle('active', lang==='ru');
     localStorage.setItem('v12_lang', lang);
   }
-  applyLang(localStorage.getItem('v12_lang') || 'ro');
-  document.getElementById('langRo').addEventListener('click', ()=>applyLang('ro'));
-  document.getElementById('langRu').addEventListener('click', ()=>applyLang('ru'));
+
+  let langBusy=false;
+  async function switchLang(lang){
+    if(langBusy || document.documentElement.lang===lang) return;
+    langBusy=true;
+    const els=[...document.querySelectorAll('[data-i18n]')];
+    await animate(els,{opacity:[1,0],y:[0,6]},{duration:.18,easing:'ease-in'}).finished;
+    setLangText(lang);
+    await animate(els,{opacity:[0,1],y:[6,0]},{duration:.4,easing:[.22,.7,.2,1]}).finished;
+    langBusy=false;
+  }
+
+  setLangText(localStorage.getItem('v12_lang') || 'ro');
+  document.getElementById('langRo').addEventListener('click', ()=>switchLang('ro'));
+  document.getElementById('langRu').addEventListener('click', ()=>switchLang('ru'));
 
   const header=document.getElementById('header');
   window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>40));
