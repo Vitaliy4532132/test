@@ -109,7 +109,6 @@
   .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg2)}
   .marquee-track{display:flex;width:max-content;gap:0;animation:marqueeScroll 24s linear infinite}
   @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
   .marquee-group{display:flex;align-items:center;flex-shrink:0}
   .marquee-track span.word{font-family:'Archivo Black';font-size:15px;letter-spacing:2px;color:var(--muted);padding:0 22px;white-space:nowrap}
   .marquee-track span.dot{width:6px;height:6px;border-radius:50%;background:var(--stripe);flex-shrink:0}
