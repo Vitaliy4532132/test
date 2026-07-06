@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ro">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>V12 Detailing Studio — Бельцы</title>
-<meta name="description" content="V12 Detailing Studio, Бельцы. Мойка, химчистка, полировка и керамика. Твоя тачка — наш шедевр." />
+<title>V12 Detailing Studio — Bălți</title>
+<meta name="description" content="V12 Detailing Studio, Bălți. Spălare, curățare chimică, lustruire și ceramică. Mașina ta — capodopera noastră." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,6 +17,7 @@
     --line-strong:rgba(255,255,255,.2);
     --silver:#c7c9ce;
     --silver-light:#eceef2;
+    --stripe:#ff5468;
     --text:#f1f1f2;
     --muted:#8b8b90;
     --radius:10px;
@@ -29,20 +30,26 @@
     color:var(--text);
     line-height:1.7;
     overflow-x:hidden;
+    position:relative;
   }
   h1,h2,h3,.disp{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:1.05;letter-spacing:.5px;font-weight:400}
   a{color:inherit;text-decoration:none}
   img,video{max-width:100%;display:block}
+  button{font-family:inherit}
   .container{max-width:1180px;margin:0 auto;padding:0 24px}
   .silver-text{
     background:linear-gradient(180deg,var(--silver-light) 0%,var(--silver) 55%,#8f9096 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  #top,section,header,footer{position:relative;z-index:2}
 
   .btn{
     display:inline-flex;align-items:center;gap:10px;
     padding:16px 32px;border-radius:60px;font-size:14px;font-weight:600;letter-spacing:.5px;
-    transition:.25s;cursor:pointer;border:1.5px solid var(--line-strong);color:var(--text);
+    transition:border-color .25s,background .25s,box-shadow .25s;cursor:pointer;border:1.5px solid var(--line-strong);color:var(--text);
     background:transparent;
   }
   .btn:hover{border-color:#fff;background:rgba(255,255,255,.04)}
@@ -50,44 +57,59 @@
     background:linear-gradient(180deg,#f4f5f7,#c7c9ce 55%,#9a9ba1);
     color:#0a0a0a;border:none;
   }
-  .btn.solid:hover{background:linear-gradient(180deg,#ffffff,#d6d7db 55%,#a9aab0);box-shadow:0 8px 26px rgba(255,255,255,.12)}
+  .btn.solid:hover{background:linear-gradient(180deg,#ffffff,#d6d7db 55%,#a9aab0);box-shadow:0 10px 30px rgba(255,84,104,.18)}
   .btn.small{padding:11px 20px;font-size:12.5px}
+  .btn svg{flex-shrink:0}
 
   /* HEADER */
-  header{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:.3s;border-bottom:1px solid transparent}
+  header{position:sticky;top:0;z-index:100;padding:18px 0;transition:.3s;border-bottom:1px solid transparent;background:transparent}
   header.scrolled{background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between}
   .logo{display:flex;align-items:center;gap:12px}
-  .logo img{height:38px;width:auto}
-  .logo .tag{font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:3px;font-weight:500}
-  .nav-links{display:flex;gap:36px;align-items:center}
-  .nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);transition:.2s}
+  .logo img{height:26px;width:auto}
+  .logo .tag{font-size:9px;letter-spacing:2.5px;color:var(--muted);line-height:1.35;font-weight:500;border-left:1px solid var(--line-strong);padding-left:12px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{position:relative;font-size:13.5px;font-weight:500;color:var(--muted);transition:.2s}
+  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--stripe);transition:right .25s}
   .nav-links a:hover{color:var(--text)}
+  .nav-links a:hover::after{right:0}
   .nav-phone{color:var(--text)!important;border:1px solid var(--line-strong);padding:9px 18px;border-radius:60px;font-weight:600}
+  .nav-phone::after{display:none}
   .nav-phone:hover{border-color:#fff}
+  .lang-switch{display:flex;align-items:center;border:1px solid var(--line-strong);border-radius:60px;padding:3px;gap:2px}
+  .lang-switch button{border:none;background:transparent;color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.5px;padding:6px 12px;border-radius:60px;cursor:pointer;transition:.2s}
+  .lang-switch button.active{background:var(--silver-light);color:#0a0a0a}
   .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
   .burger span{width:24px;height:2px;background:var(--text)}
 
   /* HERO */
-  .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:130px 0 60px;overflow:hidden}
-  .hero-bg{
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    font-family:'Archivo Black';font-size:min(46vw,620px);color:transparent;
-    -webkit-text-stroke:1px rgba(255,255,255,.06);white-space:nowrap;z-index:0;pointer-events:none;
-    user-select:none;
+  .hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:140px 0 90px}
+  .hero-media{position:absolute;inset:-8% 0 -8% 0;overflow:hidden;z-index:0}
+  .hero-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25) contrast(1.05)}
+  .hero-overlay{position:absolute;inset:0;z-index:1;
+    background:
+      linear-gradient(180deg,rgba(8,8,8,.55) 0%,rgba(8,8,8,.55) 30%,rgba(8,8,8,.96) 88%),
+      linear-gradient(90deg,rgba(8,8,8,.9) 0%,rgba(8,8,8,.25) 55%,rgba(8,8,8,.55) 100%);
   }
-  .hero-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;text-align:center}
-  .status-line{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:1.5px;color:var(--muted);margin-bottom:26px;text-transform:uppercase;border:1px solid var(--line);padding:8px 18px;border-radius:60px}
-  .status-line .dot{width:7px;height:7px;background:var(--silver-light);border-radius:50%;box-shadow:0 0 0 0 rgba(255,255,255,.4);animation:pulse 2s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.35)}70%{box-shadow:0 0 0 9px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
-  .hero h1{font-size:clamp(38px,6.5vw,74px);margin-bottom:22px}
-  .hero p.lead{font-size:17px;color:var(--muted);max-width:480px;margin:0 auto 38px;font-weight:300}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-  .hero-stats{display:flex;gap:0;margin-top:64px;border-top:1px solid var(--line);justify-content:center}
-  .hero-stats .s{padding:20px 34px 0;border-right:1px solid var(--line)}
+  .hero-inner{position:relative;z-index:2;max-width:640px}
+  .status-line{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:1.5px;color:var(--silver-light);margin-bottom:26px;text-transform:uppercase;border:1px solid var(--line-strong);padding:8px 18px;border-radius:60px;background:rgba(10,10,10,.35);backdrop-filter:blur(6px)}
+  .status-line .dot{width:7px;height:7px;background:var(--stripe);border-radius:50%;box-shadow:0 0 0 0 rgba(255,84,104,.5);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,84,104,.45)}70%{box-shadow:0 0 0 9px rgba(255,84,104,0)}100%{box-shadow:0 0 0 0 rgba(255,84,104,0)}}
+  .hero h1{font-size:clamp(38px,6.5vw,72px);margin-bottom:22px}
+  .hero p.lead{font-size:17px;color:#c7c9ce;max-width:460px;margin:0 0 38px;font-weight:300}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:0;margin-top:64px;border-top:1px solid var(--line-strong)}
+  .hero-stats .s{padding:20px 34px 0 0;margin-right:34px;border-right:1px solid var(--line)}
   .hero-stats .s:last-child{border-right:none}
   .hero-stats .s b{font-family:'Archivo Black';font-size:30px;color:var(--text);display:block}
   .hero-stats .s span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
+
+  /* MARQUEE */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg2)}
+  .marquee-track{display:flex;width:max-content;gap:0}
+  .marquee-group{display:flex;align-items:center;flex-shrink:0}
+  .marquee-track span.word{font-family:'Archivo Black';font-size:15px;letter-spacing:2px;color:var(--muted);padding:0 22px;white-space:nowrap}
+  .marquee-track span.dot{width:6px;height:6px;border-radius:50%;background:var(--stripe);flex-shrink:0}
 
   /* SECTIONS */
   section{padding:110px 0}
@@ -95,23 +117,26 @@
   .sec-head.center{margin:0 auto 56px;text-align:center}
   .sec-head .kicker{color:var(--muted);font-weight:600;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
   .sec-head.center .kicker{justify-content:center}
-  .sec-head .kicker::before{content:"";width:26px;height:1px;background:var(--muted)}
+  .sec-head .kicker::before{content:"";width:26px;height:1px;background:var(--stripe)}
   .sec-head.center .kicker::before{display:none}
   .sec-head h2{font-size:clamp(28px,4vw,44px)}
   .sec-head p{color:var(--muted);margin-top:16px;font-size:15.5px;font-weight:300}
 
-  /* CARD */
-  .card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:34px 30px;transition:.3s;
-  }
-  .card:hover{border-color:var(--line-strong);transform:translateY(-4px)}
-  .card .idx{font-family:'Archivo Black';font-size:34px;color:transparent;-webkit-text-stroke:1px var(--line-strong);margin-bottom:18px}
-  .card h3{font-size:17px;margin-bottom:10px;font-weight:600;text-transform:none;font-family:'Poppins';letter-spacing:0}
-  .card p{color:var(--muted);font-size:14px;font-weight:300}
-  .card .price{margin-top:20px;font-size:14px;letter-spacing:.5px;color:var(--silver-light);font-weight:600}
-
-  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  /* SERVICES — editorial rows */
+  .svc-list{border-top:1px solid var(--line)}
+  .svc-row{position:relative;display:flex;align-items:center;gap:28px;padding:30px 4px;border-bottom:1px solid var(--line);transition:padding .35s cubic-bezier(.2,.8,.2,1)}
+  .svc-row:hover{padding-left:16px}
+  .svc-num{font-family:'Archivo Black';font-size:15px;color:var(--muted);width:36px;flex-shrink:0;transition:color .3s}
+  .svc-row:hover .svc-num{color:var(--stripe)}
+  .svc-main{flex:1;min-width:0}
+  .svc-main h3{font-size:19px;margin-bottom:6px;font-weight:600;text-transform:none;font-family:'Poppins';letter-spacing:0}
+  .svc-main p{color:var(--muted);font-size:13.5px;font-weight:300;max-width:480px}
+  .svc-right{position:relative;width:130px;height:64px;flex-shrink:0}
+  .svc-price{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;font-size:14px;letter-spacing:.5px;color:var(--silver-light);font-weight:600;transition:opacity .3s}
+  .svc-thumb{position:absolute;inset:0;border-radius:8px;background-size:cover;background-position:center;opacity:0;transition:opacity .35s;box-shadow:0 10px 26px rgba(0,0,0,.55)}
+  .svc-row:hover .svc-price{opacity:0}
+  .svc-row:hover .svc-thumb{opacity:1}
+  @media(hover:none){ .svc-thumb{display:none} .svc-row:hover .svc-price{opacity:1} }
 
   /* WHY */
   .why{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
@@ -123,13 +148,23 @@
 
   /* GALLERY */
   .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:14px}
-  .gallery-grid .g{border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);position:relative;overflow:hidden;transition:.3s}
+  .gallery-grid .g{border-radius:var(--radius);background:var(--panel);border:1px solid var(--line);position:relative;overflow:hidden;transition:.3s;cursor:pointer}
   .gallery-grid .g:hover{border-color:var(--line-strong)}
-  .gallery-grid .g img{width:100%;height:100%;object-fit:cover;transition:.5s;display:block}
+  .gallery-grid .g img{width:100%;height:100%;object-fit:cover;transition:.5s}
   .gallery-grid .g:hover img{transform:scale(1.06)}
   .gallery-grid .g.big{grid-column:span 2;grid-row:span 2}
   .gallery-note{color:var(--muted);margin-top:24px;font-size:14px;font-weight:300}
   .gallery-note a{color:var(--silver-light);font-weight:500}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;background:rgba(6,6,6,.94);backdrop-filter:blur(8px)}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:88vw;max-height:80vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb-btn{position:absolute;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:rgba(10,10,10,.5);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .lb-close{top:24px;right:24px}
+  .lb-prev{left:20px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:20px;top:50%;transform:translateY(-50%)}
+  @media(max-width:640px){ .lb-prev{left:8px}.lb-next{right:8px} }
 
   /* REELS */
   .reels-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
@@ -147,17 +182,23 @@
   .reels-nav{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
   .reels-nav button{
     width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--text);
-    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s;
   }
   .reels-nav button:hover{border-color:#fff;background:rgba(255,255,255,.06)}
 
   /* REVIEWS */
   .reviews{background:var(--bg2);border-top:1px solid var(--line)}
+  .pull-quote{max-width:760px;margin:0 auto 60px;text-align:center;position:relative}
+  .pull-quote .qmark{font-family:'Archivo Black';font-size:64px;color:var(--stripe);opacity:.6;line-height:1;display:block;margin-bottom:6px}
+  .pull-quote p{font-size:clamp(20px,3vw,28px);font-weight:300;color:var(--silver-light);line-height:1.5;margin-bottom:20px}
+  .pull-quote .who b{font-size:14px;font-weight:600;display:block}
+  .pull-quote .who span{font-size:12px;color:var(--muted)}
   .rev-rating{display:flex;align-items:baseline;gap:18px;margin-bottom:50px;flex-wrap:wrap;justify-content:center}
   .rev-rating .num{font-family:'Archivo Black';font-size:52px}
   .rev-rating .stars{font-size:14px;color:var(--muted);letter-spacing:1px}
   .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .rev{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .rev{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:border-color .25s,transform .25s}
+  .rev:hover{border-color:var(--line-strong);transform:translateY(-4px)}
   .rev .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
   .rev .who b{display:block;font-size:14.5px;font-weight:600}
   .rev .who span{font-size:11.5px;color:var(--muted)}
@@ -167,9 +208,9 @@
   /* CONTACT */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
   .contact-info{display:flex;flex-direction:column;gap:14px}
-  .ci{display:flex;gap:18px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;transition:.25s}
+  .ci{display:flex;gap:18px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;transition:border-color .25s}
   .ci:hover{border-color:var(--line-strong)}
-  .ci .tag{font-size:11px;color:var(--muted);border:1px solid var(--line-strong);padding:4px 10px;border-radius:6px;letter-spacing:1px;flex-shrink:0;height:fit-content;font-weight:600}
+  .ci .ico{width:38px;height:38px;border-radius:8px;background:rgba(255,84,104,.1);color:var(--stripe);display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .ci b{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;display:block}
   .ci p{font-size:16.5px;color:#fff;margin-top:4px}
   .ci .hours-row{display:flex;justify-content:space-between;font-size:13.5px;color:#c9cace;margin-top:4px;font-weight:300}
@@ -177,7 +218,7 @@
   .map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:grayscale(1) invert(.92) contrast(.9)}
   .map-cta{position:absolute;left:16px;bottom:16px;z-index:3}
   .socials{display:flex;gap:14px;margin-top:6px}
-  .socials a{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.5px;color:var(--muted);font-weight:500;transition:.2s}
+  .socials a{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:8px;padding:16px;font-size:13px;letter-spacing:.5px;color:var(--muted);font-weight:500;transition:.2s}
   .socials a:hover{border-color:var(--line-strong);color:var(--text)}
 
   /* CTA STRIP */
@@ -195,43 +236,48 @@
 
   /* FLOAT */
   .float-call{position:fixed;bottom:24px;right:24px;z-index:90;width:58px;height:58px;border-radius:50%;background:linear-gradient(180deg,#f4f5f7,#c7c9ce 55%,#9a9ba1);display:flex;align-items:center;justify-content:center;color:#0a0a0a;box-shadow:0 8px 30px rgba(0,0,0,.5)}
-  .btn svg{flex-shrink:0}
 
-  .reveal{opacity:0;transform:translateY(26px);transition:.65s cubic-bezier(.2,.7,.2,1)}
-  .reveal.on{opacity:1;transform:none}
+  .reveal{opacity:0;transform:translateY(26px)}
 
   @media(max-width:900px){
     .nav-links{display:none}
     .burger{display:flex}
     .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg2);padding:24px;gap:18px;border-bottom:1px solid var(--line)}
-    .services-grid,.rev-grid{grid-template-columns:1fr}
+    .rev-grid{grid-template-columns:1fr}
     .why-grid{grid-template-columns:repeat(2,1fr)}
     .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
     .gallery-grid .g.big{grid-column:span 2;grid-row:span 2}
     .contact-grid{grid-template-columns:1fr}
     .hero-stats{flex-wrap:wrap}
-    .hero-stats .s{flex:1 1 33%;border-right:none;margin-bottom:14px}
+    .hero-stats .s{flex:1 1 33%;border-right:none;margin-bottom:14px;padding-right:0}
+    .svc-row{flex-wrap:wrap}
+    .svc-right{width:auto}
     section{padding:74px 0}
-    .hero-bg{font-size:32vw}
     .reel-card{width:190px}
   }
 </style>
 </head>
 <body>
+<div class="grain"></div>
 
 <header id="header">
   <div class="container nav">
     <a href="#top" class="logo">
-      <img src="assets/logo.jpg" alt="V12 Detailing Studio" />
+      <img src="assets/logo-mark.jpg" alt="V12" />
+      <span class="tag">DETAILING<br>STUDIO</span>
     </a>
     <nav class="nav-links" id="menu">
-      <a href="#services">Услуги</a>
-      <a href="#why">Почему мы</a>
-      <a href="#gallery">Работы</a>
-      <a href="#reels">Reels</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#services" data-i18n="nav.services">Servicii</a>
+      <a href="#why" data-i18n="nav.why">De ce noi</a>
+      <a href="#gallery" data-i18n="nav.gallery">Lucrări</a>
+      <a href="#reels" data-i18n="nav.reels">Reels</a>
+      <a href="#reviews" data-i18n="nav.reviews">Recenzii</a>
+      <a href="#contacts" data-i18n="nav.contacts">Contacte</a>
       <a href="tel:+37367222209" class="nav-phone">067 222 209</a>
+      <div class="lang-switch">
+        <button type="button" id="langRo" class="active" data-lang="ro">RO</button>
+        <button type="button" id="langRu" data-lang="ru">RU</button>
+      </div>
     </nav>
     <div class="burger" id="burger"><span></span><span></span><span></span></div>
   </div>
@@ -239,67 +285,84 @@
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg">V12</div>
+  <div class="hero-media"><img id="heroImg" src="assets/img/photo-02.jpg" alt="BMW dupa detailing V12"></div>
+  <div class="hero-overlay"></div>
   <div class="container hero-inner">
-    <div class="status-line reveal"><span class="dot"></span> Принимаем заявки</div>
-    <h1 class="reveal">Твоя тачка —<br><span class="silver-text">наш шедевр</span></h1>
-    <p class="lead reveal">Детейлинг-студия в Бельцах. Мойка, химчистка, полировка и защита кузова — точно, аккуратно, на совесть.</p>
+    <div class="status-line reveal"><span class="dot"></span> <span data-i18n="hero.status">Acceptăm programări</span></div>
+    <h1 class="reveal"><span data-i18n="hero.title1">Mașina ta —</span><br><span class="silver-text" data-i18n="hero.title2">capodopera noastră</span></h1>
+    <p class="lead reveal" data-i18n="hero.lead">Studio de detailing în Bălți. Spălare, curățare chimică, lustruire și protecția caroseriei — exact, atent, cu suflet.</p>
     <div class="hero-cta reveal">
-      <a href="tel:+37367222209" class="btn solid">Записаться →</a>
-      <a href="#services" class="btn">Услуги</a>
+      <a href="tel:+37367222209" class="btn solid" data-i18n="hero.cta_book">Programează-te →</a>
+      <a href="#services" class="btn" data-i18n="nav.services">Servicii</a>
     </div>
     <div class="hero-stats reveal">
-      <div class="s"><b>5.0</b><span>★ Google</span></div>
-      <div class="s"><b>32+</b><span>отзыва</span></div>
-      <div class="s"><b>100%</b><span>довольных</span></div>
+      <div class="s"><b data-count="5" data-decimals="1">0.0</b><span>★ Google</span></div>
+      <div class="s"><b data-count="32" data-suffix="+">0</b><span data-i18n="hero.stat_reviews">recenzii</span></div>
+      <div class="s"><b data-count="100" data-suffix="%">0</b><span data-i18n="hero.stat_happy">clienți mulțumiți</span></div>
     </div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-group">
+      <span class="word" data-i18n="marquee.w1">SPĂLARE</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w2">CURĂȚARE CHIMICĂ</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w3">LUSTRUIRE</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w4">CERAMICĂ</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w5">PREGĂTIRE DE VÂNZARE</span><span class="dot"></span>
+      <span class="word">V12 DETAILING STUDIO</span><span class="dot"></span>
+    </div>
+    <div class="marquee-group">
+      <span class="word" data-i18n="marquee.w1">SPĂLARE</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w2">CURĂȚARE CHIMICĂ</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w3">LUSTRUIRE</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w4">CERAMICĂ</span><span class="dot"></span>
+      <span class="word" data-i18n="marquee.w5">PREGĂTIRE DE VÂNZARE</span><span class="dot"></span>
+      <span class="word">V12 DETAILING STUDIO</span><span class="dot"></span>
+    </div>
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="kicker">Что мы делаем</span>
-      <h2>Услуги</h2>
-      <p>Полный цикл детейлинга — от быстрой мойки до полного восстановления и защиты кузова.</p>
+      <span class="kicker" data-i18n="services.kicker">Ce facem</span>
+      <h2 data-i18n="nav.services">Servicii</h2>
+      <p data-i18n="services.subtitle">Ciclu complet de detailing — de la spălare rapidă până la restaurarea și protecția completă a caroseriei.</p>
     </div>
-    <div class="services-grid">
-      <div class="card reveal">
-        <div class="idx">01</div>
-        <h3>Мойка и экспресс-детейлинг</h3>
-        <p>Бесконтактная мойка кузова, дисков и подкапотного пространства.</p>
-        <div class="price">от 150 lei</div>
+    <div class="svc-list">
+      <div class="svc-row reveal">
+        <span class="svc-num">01</span>
+        <div class="svc-main"><h3 data-i18n="services.r1.title">Spălare și detailing expres</h3><p data-i18n="services.r1.desc">Spălare fără contact a caroseriei, jantelor și compartimentului motor.</p></div>
+        <div class="svc-right"><span class="svc-price" data-i18n="services.r1.price">de la 150 lei</span><span class="svc-thumb" style="background-image:url('assets/img/photo-03.jpg')"></span></div>
       </div>
-      <div class="card reveal">
-        <div class="idx">02</div>
-        <h3>Химчистка салона</h3>
-        <p>Глубокая чистка сидений, потолка, ковров и пластика. Убираем пятна и запахи.</p>
-        <div class="price">от 800 lei</div>
+      <div class="svc-row reveal">
+        <span class="svc-num">02</span>
+        <div class="svc-main"><h3 data-i18n="services.r2.title">Curățare chimică a salonului</h3><p data-i18n="services.r2.desc">Curățare profundă a scaunelor, tavanului, covoarelor și plasticului. Eliminăm petele și mirosurile.</p></div>
+        <div class="svc-right"><span class="svc-price" data-i18n="services.r2.price">de la 800 lei</span><span class="svc-thumb" style="background-image:url('assets/img/photo-05.png')"></span></div>
       </div>
-      <div class="card reveal">
-        <div class="idx">03</div>
-        <h3>Полировка кузова</h3>
-        <p>Убираем царапины и голограммы, возвращаем глубокий заводской блеск.</p>
-        <div class="price">от 1200 lei</div>
+      <div class="svc-row reveal">
+        <span class="svc-num">03</span>
+        <div class="svc-main"><h3 data-i18n="services.r3.title">Lustruirea caroseriei</h3><p data-i18n="services.r3.desc">Eliminăm zgârieturile și holografiile, redăm luciul profund de fabrică.</p></div>
+        <div class="svc-right"><span class="svc-price" data-i18n="services.r3.price">de la 1200 lei</span><span class="svc-thumb" style="background-image:url('assets/img/photo-02.jpg')"></span></div>
       </div>
-      <div class="card reveal">
-        <div class="idx">04</div>
-        <h3>Керамика и защита</h3>
-        <p>Долговременная защита лака от грязи, реагентов и УФ-излучения.</p>
-        <div class="price">от 2000 lei</div>
+      <div class="svc-row reveal">
+        <span class="svc-num">04</span>
+        <div class="svc-main"><h3 data-i18n="services.r4.title">Ceramică și protecție</h3><p data-i18n="services.r4.desc">Protecție de lungă durată a lacului împotriva murdăriei, reagenților și razelor UV.</p></div>
+        <div class="svc-right"><span class="svc-price" data-i18n="services.r4.price">de la 2000 lei</span><span class="svc-thumb" style="background-image:url('assets/img/photo-01.jpg')"></span></div>
       </div>
-      <div class="card reveal">
-        <div class="idx">05</div>
-        <h3>Полировка фар</h3>
-        <p>Снимаем желтизну и мутность — свет ярче, вид авто заметно свежее.</p>
-        <div class="price">от 300 lei</div>
+      <div class="svc-row reveal">
+        <span class="svc-num">05</span>
+        <div class="svc-main"><h3 data-i18n="services.r5.title">Lustruirea farurilor</h3><p data-i18n="services.r5.desc">Eliminăm îngălbenirea și opacitatea — lumină mai puternică, mașina arată mai proaspătă.</p></div>
+        <div class="svc-right"><span class="svc-price" data-i18n="services.r5.price">de la 300 lei</span><span class="svc-thumb" style="background-image:url('assets/img/photo-01.jpg')"></span></div>
       </div>
-      <div class="card reveal">
-        <div class="idx">06</div>
-        <h3>Предпродажная подготовка</h3>
-        <p>Полный комплекс — отдали грязную машину, забрали как с салона.</p>
-        <div class="price">по запросу</div>
+      <div class="svc-row reveal">
+        <span class="svc-num">06</span>
+        <div class="svc-main"><h3 data-i18n="services.r6.title">Pregătire pentru vânzare</h3><p data-i18n="services.r6.desc">Pachet complet — ai adus mașina murdară, o iei înapoi ca din showroom.</p></div>
+        <div class="svc-right"><span class="svc-price" data-i18n="services.r6.price">la cerere</span><span class="svc-thumb" style="background-image:url('assets/img/photo-08.png')"></span></div>
       </div>
     </div>
   </div>
@@ -309,14 +372,14 @@
 <section class="why" id="why">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="kicker">Почему V12</span>
-      <h2>Работаем на совесть</h2>
+      <span class="kicker" data-i18n="why.kicker">De ce V12</span>
+      <h2 data-i18n="why.title">Lucrăm cu responsabilitate</h2>
     </div>
     <div class="why-grid">
-      <div class="why-item reveal"><div class="n">01</div><h3>Быстро</h3><p>Ценим время клиента — без задержек и лишних ожиданий.</p></div>
-      <div class="why-item reveal"><div class="n">02</div><h3>Качественно</h3><p>Проф. химия и инструмент. Мастера знают своё дело.</p></div>
-      <div class="why-item reveal"><div class="n">03</div><h3>Безопасно</h3><p>Бережный подход к каждой детали, без риска для лака и салона.</p></div>
-      <div class="why-item reveal"><div class="n">04</div><h3>Честно</h3><p>Прозрачные цены и результат, который рекомендуют друзьям.</p></div>
+      <div class="why-item reveal"><div class="n">01</div><h3 data-i18n="why.i1.title">Rapid</h3><p data-i18n="why.i1.desc">Prețuim timpul clientului — fără întârzieri și așteptări inutile.</p></div>
+      <div class="why-item reveal"><div class="n">02</div><h3 data-i18n="why.i2.title">Calitativ</h3><p data-i18n="why.i2.desc">Chimie și instrumente profesionale. Meșterii își cunosc meseria.</p></div>
+      <div class="why-item reveal"><div class="n">03</div><h3 data-i18n="why.i3.title">Sigur</h3><p data-i18n="why.i3.desc">Abordare atentă a fiecărui detaliu, fără riscuri pentru lac și salon.</p></div>
+      <div class="why-item reveal"><div class="n">04</div><h3 data-i18n="why.i4.title">Onest</h3><p data-i18n="why.i4.desc">Prețuri transparente și rezultate pe care le recomandă prietenilor.</p></div>
     </div>
   </div>
 </section>
@@ -325,21 +388,21 @@
 <section id="gallery">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="kicker">Портфолио</span>
-      <h2>Наши работы</h2>
-      <p>Реальные фото с наших смен в студии на Vladimir Komarov 41a.</p>
+      <span class="kicker" data-i18n="gallery.kicker">Portofoliu</span>
+      <h2 data-i18n="gallery.title">Lucrările noastre</h2>
+      <p data-i18n="gallery.subtitle">Fotografii reale din turele noastre, str. Vladimir Komarov 41a. Apasă pe o poză pentru a o mări.</p>
     </div>
     <div class="gallery-grid reveal">
-      <div class="g big"><img src="assets/img/photo-02.jpg" alt="BMW после детейлинга" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-01.jpg" alt="BMW после мойки" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-05.png" alt="Химчистка сидения" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-07.png" alt="Чистка салона, педали" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-03.jpg" alt="Мойка пеной" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-06.png" alt="Чистый салон" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-08.png" alt="Детейлинг салона" loading="lazy"></div>
-      <div class="g"><img src="assets/img/photo-04.jpg" alt="V12 Detailing Studio, Бельцы" loading="lazy"></div>
+      <div class="g big"><img src="assets/img/photo-02.jpg" alt="BMW dupa detailing" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-01.jpg" alt="BMW dupa spalare" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-05.png" alt="Curatare chimica scaun" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-07.png" alt="Curatare salon, pedale" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-03.jpg" alt="Spalare cu spuma" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-06.png" alt="Salon curat" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-08.png" alt="Detailing salon" loading="lazy"></div>
+      <div class="g"><img src="assets/img/photo-04.jpg" alt="V12 Detailing Studio, Balti" loading="lazy"></div>
     </div>
-    <p class="gallery-note">Больше примеров — <a href="https://www.instagram.com/v12_detailing_studio" target="_blank" rel="noopener">Instagram</a> и <a href="https://www.tiktok.com/@detailstudio_v12" target="_blank" rel="noopener">TikTok</a>.</p>
+    <p class="gallery-note"><span data-i18n="gallery.note_pre">Mai multe exemple —</span> <a href="https://www.instagram.com/v12_detailing_studio" target="_blank" rel="noopener">Instagram</a> <span data-i18n="gallery.note_and">și</span> <a href="https://www.tiktok.com/@detailstudio_v12" target="_blank" rel="noopener">TikTok</a>.</p>
   </div>
 </section>
 
@@ -347,9 +410,9 @@
 <section id="reels">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="kicker">Видео</span>
-      <h2>Работа в процессе</h2>
-      <p>Короткие клипы прямо со смен — смахни в сторону, чтобы посмотреть ещё.</p>
+      <span class="kicker" data-i18n="reels.kicker">Video</span>
+      <h2 data-i18n="reels.title">Munca în direct</h2>
+      <p data-i18n="reels.subtitle">Clipuri scurte direct din ateliere — glisează pentru a vedea mai multe.</p>
     </div>
     <div class="reels-track reveal" id="reelsTrack">
       <div class="reel-card">
@@ -370,10 +433,10 @@
       </div>
     </div>
     <div class="reels-nav">
-      <button id="reelPrev" aria-label="Назад">
+      <button id="reelPrev" aria-label="Înapoi">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <button id="reelNext" aria-label="Вперёд">
+      <button id="reelNext" aria-label="Înainte">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       </button>
     </div>
@@ -384,19 +447,21 @@
 <section class="reviews" id="reviews">
   <div class="container">
     <div class="sec-head center reveal">
-      <span class="kicker">Отзывы</span>
-      <h2>Что говорят клиенты</h2>
+      <span class="kicker" data-i18n="reviews.kicker">Recenzii</span>
+      <h2 data-i18n="reviews.title">Ce spun clienții</h2>
     </div>
     <div class="rev-rating reveal">
-      <div class="num silver-text">5.0</div>
-      <div class="stars">★★★★★ · Google · 32+ отзыва</div>
+      <div class="num silver-text"><span data-count="5" data-decimals="1">0.0</span></div>
+      <div class="stars">★★★★★ · Google · <span data-i18n="reviews.count">32+ recenzii</span></div>
     </div>
+
+    <div class="pull-quote reveal">
+      <span class="qmark">&ldquo;</span>
+      <p>Быстро, качественно, профессионально. Мастера знают свою работу. Однозначно рекомендую!</p>
+      <div class="who"><b>Moldovenii s-au născut</b><span>Местный эксперт · 4 мес. назад</span></div>
+    </div>
+
     <div class="rev-grid">
-      <div class="rev reveal">
-        <div class="top"><div class="who"><b>Moldovenii s-au născut</b><span>4 мес. назад</span></div></div>
-        <div class="st">★★★★★</div>
-        <p>Быстро, качественно, профессионально. Мастера знают свою работу. Однозначно рекомендую!</p>
-      </div>
       <div class="rev reveal">
         <div class="top"><div class="who"><b>Vladislav D</b><span>7 мес. назад</span></div></div>
         <div class="st">★★★★★</div>
@@ -430,11 +495,11 @@
 <section class="cta-strip">
   <div class="container">
     <div class="sec-head center reveal">
-      <span class="kicker">Запись</span>
-      <h2>Готовы влюбиться в свою машину заново?</h2>
-      <p>Запишитесь на удобное время — ответим быстро.</p>
+      <span class="kicker" data-i18n="cta.kicker">Programare</span>
+      <h2 data-i18n="cta.title">Gata să te îndrăgostești din nou de mașina ta?</h2>
+      <p data-i18n="cta.subtitle">Programează-te la o oră convenabilă — răspundem rapid.</p>
     </div>
-    <a href="tel:+37367222209" class="btn solid reveal">Позвонить: 067 222 209</a>
+    <a href="tel:+37367222209" class="btn solid reveal" data-i18n="cta.button">Sună: 067 222 209</a>
   </div>
 </section>
 
@@ -442,40 +507,40 @@
 <section id="contacts">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="kicker">Контакты</span>
-      <h2>Как нас найти</h2>
+      <span class="kicker" data-i18n="contacts.kicker">Contacte</span>
+      <h2 data-i18n="contacts.title">Cum ne găsești</h2>
     </div>
     <div class="contact-grid reveal">
       <div class="contact-info">
         <div class="ci">
-          <div class="tag">LOC</div>
-          <div><b>Адрес</b><p>Bălți, Vladimir Komarov 41a</p></div>
+          <div class="ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b data-i18n="contacts.address_label">Adresă</b><p>Bălți, Vladimir Komarov 41a</p></div>
         </div>
         <div class="ci">
-          <div class="tag">TEL</div>
-          <div><b>Телефон</b><p><a href="tel:+37367222209">+373 67 222 209</a></p></div>
+          <div class="ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><b data-i18n="contacts.phone_label">Telefon</b><p><a href="tel:+37367222209">+373 67 222 209</a></p></div>
         </div>
         <div class="ci">
-          <div class="tag">HRS</div>
+          <div class="ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
           <div style="flex:1">
-            <b>Часы работы</b>
-            <div class="hours-row"><span>Пн — Сб</span><span>09:00 — 19:00</span></div>
-            <div class="hours-row"><span>Вс</span><span>выходной</span></div>
+            <b data-i18n="contacts.hours_label">Program de lucru</b>
+            <div class="hours-row"><span data-i18n="contacts.days">Lu — Sb</span><span>09:00 — 19:00</span></div>
+            <div class="hours-row"><span data-i18n="contacts.sunday">Du</span><span data-i18n="contacts.closed">zi liberă</span></div>
           </div>
         </div>
         <div class="socials">
           <a href="https://www.instagram.com/v12_detailing_studio" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.tiktok.com/@detailstudio_v12" target="_blank" rel="noopener">TikTok</a>
-          <a href="tel:+37367222209">Позвонить</a>
+          <a href="tel:+37367222209" data-i18n="contacts.call">Sună</a>
         </div>
       </div>
       <div class="map-wrap">
         <iframe
           src="https://www.google.com/maps?q=Vladimir%20Komarov%2041a%2C%20Balti%2C%20Moldova&output=embed"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Карта — V12 Detailing Studio"></iframe>
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Harta — V12 Detailing Studio"></iframe>
         <a class="btn solid small map-cta" href="https://www.google.com/maps/dir/?api=1&destination=Vladimir+Komarov+41a+Balti+Moldova" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Построить маршрут
+          <span data-i18n="contacts.route">Vezi traseul</span>
         </a>
       </div>
     </div>
@@ -484,20 +549,115 @@
 
 <footer>
   <div class="container foot">
-    <p>V12 Detailing Studio © 2026 · Бельцы, Молдова</p>
+    <p data-i18n="footer.copy">V12 Detailing Studio © 2026 · Bălți, Moldova</p>
     <div class="foot-links">
-      <a href="#services">Услуги</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#services" data-i18n="nav.services">Servicii</a>
+      <a href="#reviews" data-i18n="nav.reviews">Recenzii</a>
+      <a href="#contacts" data-i18n="nav.contacts">Contacte</a>
     </div>
   </div>
 </footer>
 
-<a href="tel:+37367222209" class="float-call" title="Позвонить">
+<a href="tel:+37367222209" class="float-call" id="floatCall" title="Sună">
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
 </a>
 
-<script>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Închide">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Înapoi">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Înainte">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<script type="module">
+  import { animate, inView, scroll } from "https://cdn.jsdelivr.net/npm/motion@11/+esm";
+
+  /* i18n: Romanian default, Russian toggle */
+  const translations = {
+    ro: {
+      'nav.services':'Servicii','nav.why':'De ce noi','nav.gallery':'Lucrări','nav.reviews':'Recenzii','nav.contacts':'Contacte',
+      'hero.status':'Acceptăm programări','hero.title1':'Mașina ta —','hero.title2':'capodopera noastră',
+      'hero.lead':'Studio de detailing în Bălți. Spălare, curățare chimică, lustruire și protecția caroseriei — exact, atent, cu suflet.',
+      'hero.cta_book':'Programează-te →','hero.stat_reviews':'recenzii','hero.stat_happy':'clienți mulțumiți',
+      'marquee.w1':'SPĂLARE','marquee.w2':'CURĂȚARE CHIMICĂ','marquee.w3':'LUSTRUIRE','marquee.w4':'CERAMICĂ','marquee.w5':'PREGĂTIRE DE VÂNZARE',
+      'services.kicker':'Ce facem','services.subtitle':'Ciclu complet de detailing — de la spălare rapidă până la restaurarea și protecția completă a caroseriei.',
+      'services.r1.title':'Spălare și detailing expres','services.r1.desc':'Spălare fără contact a caroseriei, jantelor și compartimentului motor.','services.r1.price':'de la 150 lei',
+      'services.r2.title':'Curățare chimică a salonului','services.r2.desc':'Curățare profundă a scaunelor, tavanului, covoarelor și plasticului. Eliminăm petele și mirosurile.','services.r2.price':'de la 800 lei',
+      'services.r3.title':'Lustruirea caroseriei','services.r3.desc':'Eliminăm zgârieturile și holografiile, redăm luciul profund de fabrică.','services.r3.price':'de la 1200 lei',
+      'services.r4.title':'Ceramică și protecție','services.r4.desc':'Protecție de lungă durată a lacului împotriva murdăriei, reagenților și razelor UV.','services.r4.price':'de la 2000 lei',
+      'services.r5.title':'Lustruirea farurilor','services.r5.desc':'Eliminăm îngălbenirea și opacitatea — lumină mai puternică, mașina arată mai proaspătă.','services.r5.price':'de la 300 lei',
+      'services.r6.title':'Pregătire pentru vânzare','services.r6.desc':'Pachet complet — ai adus mașina murdară, o iei înapoi ca din showroom.','services.r6.price':'la cerere',
+      'why.kicker':'De ce V12','why.title':'Lucrăm cu responsabilitate',
+      'why.i1.title':'Rapid','why.i1.desc':'Prețuim timpul clientului — fără întârzieri și așteptări inutile.',
+      'why.i2.title':'Calitativ','why.i2.desc':'Chimie și instrumente profesionale. Meșterii își cunosc meseria.',
+      'why.i3.title':'Sigur','why.i3.desc':'Abordare atentă a fiecărui detaliu, fără riscuri pentru lac și salon.',
+      'why.i4.title':'Onest','why.i4.desc':'Prețuri transparente și rezultate pe care le recomandă prietenilor.',
+      'gallery.kicker':'Portofoliu','gallery.title':'Lucrările noastre','gallery.subtitle':'Fotografii reale din turele noastre, str. Vladimir Komarov 41a. Apasă pe o poză pentru a o mări.',
+      'gallery.note_pre':'Mai multe exemple —','gallery.note_and':'și',
+      'reels.kicker':'Video','reels.title':'Munca în direct','reels.subtitle':'Clipuri scurte direct din ateliere — glisează pentru a vedea mai multe.',
+      'reviews.kicker':'Recenzii','reviews.title':'Ce spun clienții','reviews.count':'32+ recenzii',
+      'cta.kicker':'Programare','cta.title':'Gata să te îndrăgostești din nou de mașina ta?','cta.subtitle':'Programează-te la o oră convenabilă — răspundem rapid.','cta.button':'Sună: 067 222 209',
+      'contacts.kicker':'Contacte','contacts.title':'Cum ne găsești','contacts.address_label':'Adresă','contacts.phone_label':'Telefon','contacts.hours_label':'Program de lucru',
+      'contacts.days':'Lu — Sb','contacts.sunday':'Du','contacts.closed':'zi liberă','contacts.call':'Sună','contacts.route':'Vezi traseul',
+      'footer.copy':'V12 Detailing Studio © 2026 · Bălți, Moldova',
+      'meta.title':'V12 Detailing Studio — Bălți','meta.description':'V12 Detailing Studio, Bălți. Spălare, curățare chimică, lustruire și ceramică. Mașina ta — capodopera noastră.'
+    },
+    ru: {
+      'nav.services':'Услуги','nav.why':'Почему мы','nav.gallery':'Работы','nav.reviews':'Отзывы','nav.contacts':'Контакты',
+      'hero.status':'Принимаем заявки','hero.title1':'Твоя тачка —','hero.title2':'наш шедевр',
+      'hero.lead':'Детейлинг-студия в Бельцах. Мойка, химчистка, полировка и защита кузова — точно, аккуратно, на совесть.',
+      'hero.cta_book':'Записаться →','hero.stat_reviews':'отзыва','hero.stat_happy':'довольных',
+      'marquee.w1':'МОЙКА','marquee.w2':'ХИМЧИСТКА','marquee.w3':'ПОЛИРОВКА','marquee.w4':'КЕРАМИКА','marquee.w5':'ПОДГОТОВКА К ПРОДАЖЕ',
+      'services.kicker':'Что мы делаем','services.subtitle':'Полный цикл детейлинга — от быстрой мойки до полного восстановления и защиты кузова.',
+      'services.r1.title':'Мойка и экспресс-детейлинг','services.r1.desc':'Бесконтактная мойка кузова, дисков и подкапотного пространства.','services.r1.price':'от 150 lei',
+      'services.r2.title':'Химчистка салона','services.r2.desc':'Глубокая чистка сидений, потолка, ковров и пластика. Убираем пятна и запахи.','services.r2.price':'от 800 lei',
+      'services.r3.title':'Полировка кузова','services.r3.desc':'Убираем царапины и голограммы, возвращаем глубокий заводской блеск.','services.r3.price':'от 1200 lei',
+      'services.r4.title':'Керамика и защита','services.r4.desc':'Долговременная защита лака от грязи, реагентов и УФ-излучения.','services.r4.price':'от 2000 lei',
+      'services.r5.title':'Полировка фар','services.r5.desc':'Снимаем желтизну и мутность — свет ярче, вид авто заметно свежее.','services.r5.price':'от 300 lei',
+      'services.r6.title':'Предпродажная подготовка','services.r6.desc':'Полный комплекс — отдали грязную машину, забрали как с салона.','services.r6.price':'по запросу',
+      'why.kicker':'Почему V12','why.title':'Работаем на совесть',
+      'why.i1.title':'Быстро','why.i1.desc':'Ценим время клиента — без задержек и лишних ожиданий.',
+      'why.i2.title':'Качественно','why.i2.desc':'Проф. химия и инструмент. Мастера знают своё дело.',
+      'why.i3.title':'Безопасно','why.i3.desc':'Бережный подход к каждой детали, без риска для лака и салона.',
+      'why.i4.title':'Честно','why.i4.desc':'Прозрачные цены и результат, который рекомендуют друзьям.',
+      'gallery.kicker':'Портфолио','gallery.title':'Наши работы','gallery.subtitle':'Реальные фото с наших смен в студии на Vladimir Komarov 41a. Нажми на фото, чтобы увеличить.',
+      'gallery.note_pre':'Больше примеров —','gallery.note_and':'и',
+      'reels.kicker':'Видео','reels.title':'Работа в процессе','reels.subtitle':'Короткие клипы прямо со смен — смахни в сторону, чтобы посмотреть ещё.',
+      'reviews.kicker':'Отзывы','reviews.title':'Что говорят клиенты','reviews.count':'32+ отзыва',
+      'cta.kicker':'Запись','cta.title':'Готовы влюбиться в свою машину заново?','cta.subtitle':'Запишитесь на удобное время — ответим быстро.','cta.button':'Позвонить: 067 222 209',
+      'contacts.kicker':'Контакты','contacts.title':'Как нас найти','contacts.address_label':'Адрес','contacts.phone_label':'Телефон','contacts.hours_label':'Часы работы',
+      'contacts.days':'Пн — Сб','contacts.sunday':'Вс','contacts.closed':'выходной','contacts.call':'Позвонить','contacts.route':'Построить маршрут',
+      'footer.copy':'V12 Detailing Studio © 2026 · Бельцы, Молдова',
+      'meta.title':'V12 Detailing Studio — Бельцы','meta.description':'V12 Detailing Studio, Бельцы. Мойка, химчистка, полировка и керамика. Твоя тачка — наш шедевр.'
+    }
+  };
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const val = translations[lang][el.dataset.i18n];
+      if(val!==undefined) el.textContent = val;
+    });
+    document.title = translations[lang]['meta.title'];
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc) metaDesc.setAttribute('content', translations[lang]['meta.description']);
+    const floatCall = document.getElementById('floatCall');
+    if(floatCall) floatCall.title = translations[lang]['contacts.call'];
+    document.getElementById('langRo').classList.toggle('active', lang==='ro');
+    document.getElementById('langRu').classList.toggle('active', lang==='ru');
+    localStorage.setItem('v12_lang', lang);
+  }
+  applyLang(localStorage.getItem('v12_lang') || 'ro');
+  document.getElementById('langRo').addEventListener('click', ()=>applyLang('ro'));
+  document.getElementById('langRu').addEventListener('click', ()=>applyLang('ru'));
+
   const header=document.getElementById('header');
   window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>40));
 
@@ -505,10 +665,63 @@
   burger.addEventListener('click',()=>menu.classList.toggle('open'));
   menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
 
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  /* scroll-triggered spring reveal */
+  document.querySelectorAll('.reveal').forEach(el=>{
+    inView(el,()=>{
+      animate(el,{opacity:[0,1],y:[26,0]},{type:'spring',stiffness:120,damping:18,mass:.6});
+    },{margin:'-10% 0px -10% 0px'});
+  });
+
+  /* tactile spring feedback on interactive controls */
+  document.querySelectorAll('.btn,.float-call,.reels-nav button,.reel-mute,.lb-btn,.g').forEach(el=>{
+    el.addEventListener('pointerdown',()=>animate(el,{scale:.94},{duration:.12}));
+    const release=()=>animate(el,{scale:1},{type:'spring',stiffness:400,damping:15});
+    el.addEventListener('pointerup',release);
+    el.addEventListener('pointerleave',release);
+  });
+
+  /* hero parallax */
+  const heroImg=document.getElementById('heroImg');
+  scroll(animate(heroImg,{transform:['translateY(-4%)','translateY(8%)']}),{target:document.querySelector('.hero')});
+
+  /* marquee infinite loop */
+  animate('#marqueeTrack',{x:['0%','-50%']},{duration:26,repeat:Infinity,easing:'linear'});
+
+  /* count-up stats */
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=parseFloat(el.dataset.count);
+    const decimals=el.dataset.decimals?parseInt(el.dataset.decimals):0;
+    const suffix=el.dataset.suffix||'';
+    inView(el,()=>{
+      animate(0,target,{
+        duration:1.4,easing:[.22,.7,.2,1],
+        onUpdate:(v)=>{ el.textContent=v.toFixed(decimals)+suffix; }
+      });
+    },{margin:'-20% 0px -20% 0px'});
+  });
+
+  /* gallery lightbox */
+  const galleryTiles=[...document.querySelectorAll('.gallery-grid .g')];
+  const lightbox=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lbImg');
+  let lbIndex=0;
+  function openLB(i){
+    lbIndex=(i+galleryTiles.length)%galleryTiles.length;
+    lbImg.src=galleryTiles[lbIndex].querySelector('img').src;
+    lightbox.classList.add('open');
+    animate(lbImg,{opacity:[0,1],scale:[.92,1]},{type:'spring',stiffness:220,damping:24});
+  }
+  galleryTiles.forEach((tile,i)=>tile.addEventListener('click',()=>openLB(i)));
+  document.getElementById('lbClose').addEventListener('click',()=>lightbox.classList.remove('open'));
+  document.getElementById('lbNext').addEventListener('click',()=>openLB(lbIndex+1));
+  document.getElementById('lbPrev').addEventListener('click',()=>openLB(lbIndex-1));
+  lightbox.addEventListener('click',e=>{ if(e.target===lightbox) lightbox.classList.remove('open'); });
+  window.addEventListener('keydown',e=>{
+    if(!lightbox.classList.contains('open'))return;
+    if(e.key==='Escape')lightbox.classList.remove('open');
+    if(e.key==='ArrowRight')openLB(lbIndex+1);
+    if(e.key==='ArrowLeft')openLB(lbIndex-1);
+  });
 
   /* Reels: play/pause on visibility, tap to unmute, arrow scroll */
   const track=document.getElementById('reelsTrack');
@@ -529,7 +742,8 @@
   cards.forEach(c=>{
     const v=c.querySelector('video');
     const m=c.querySelector('.reel-mute');
-    m.addEventListener('click',()=>{
+    m.addEventListener('click',(e)=>{
+      e.stopPropagation();
       cards.forEach(other=>{ if(other!==c){ other.querySelector('video').muted=true; other.querySelector('.reel-mute').innerHTML=ICON_MUTED; } });
       v.muted=!v.muted;
       m.innerHTML=v.muted?ICON_MUTED:ICON_UNMUTED;
