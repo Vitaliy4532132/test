@@ -105,14 +105,10 @@
   .hero-stats .s b{font-family:'Archivo Black';font-size:34px;color:var(--text);display:block}
   .hero-stats .s span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
 
-  /* MARQUEE (Magic UI / shadcn-style marquee pattern, CSS-only) */
-  .marquee{--duration:24s;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg2)}
-  .marquee-track{display:flex;width:max-content;gap:0;will-change:transform;animation:marqueeScroll var(--duration) linear infinite}
-  @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .marquee:hover .marquee-track{animation-play-state:paused}
-  .marquee-group{display:flex;align-items:center;flex-shrink:0}
-  .marquee-track span.word{font-family:'Archivo Black';font-size:15px;letter-spacing:2px;color:var(--muted);padding:0 22px;white-space:nowrap}
-  .marquee-track span.dot{width:6px;height:6px;border-radius:50%;background:var(--stripe);flex-shrink:0}
+  /* TAG STRIP (static, no animation) */
+  .tag-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;background:var(--bg2)}
+  .tag-strip-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+  .tag-strip .tag{font-family:'Archivo Black';font-size:12.5px;letter-spacing:1.5px;color:var(--muted);border:1px solid var(--line-strong);padding:9px 20px;border-radius:60px;white-space:nowrap}
 
   /* SECTIONS */
   section{padding:110px 0}
@@ -311,25 +307,15 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track" id="marqueeTrack">
-    <div class="marquee-group">
-      <span class="word" data-i18n="marquee.w1">SPĂLARE</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w2">CURĂȚARE CHIMICĂ</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w3">LUSTRUIRE</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w4">CERAMICĂ</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w5">PREGĂTIRE DE VÂNZARE</span><span class="dot"></span>
-      <span class="word">V12 DETAILING STUDIO</span><span class="dot"></span>
-    </div>
-    <div class="marquee-group">
-      <span class="word" data-i18n="marquee.w1">SPĂLARE</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w2">CURĂȚARE CHIMICĂ</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w3">LUSTRUIRE</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w4">CERAMICĂ</span><span class="dot"></span>
-      <span class="word" data-i18n="marquee.w5">PREGĂTIRE DE VÂNZARE</span><span class="dot"></span>
-      <span class="word">V12 DETAILING STUDIO</span><span class="dot"></span>
-    </div>
+<!-- TAG STRIP -->
+<div class="tag-strip">
+  <div class="container tag-strip-inner">
+    <span class="tag" data-i18n="marquee.w1">SPĂLARE</span>
+    <span class="tag" data-i18n="marquee.w2">CURĂȚARE CHIMICĂ</span>
+    <span class="tag" data-i18n="marquee.w3">LUSTRUIRE</span>
+    <span class="tag" data-i18n="marquee.w4">CERAMICĂ</span>
+    <span class="tag" data-i18n="marquee.w5">PREGĂTIRE DE VÂNZARE</span>
+    <span class="tag">V12 DETAILING STUDIO</span>
   </div>
 </div>
 
