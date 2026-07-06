@@ -107,8 +107,7 @@
 
   /* MARQUEE */
   .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--bg2)}
-  .marquee-track{display:flex;width:max-content;gap:0;animation:marqueeScroll 24s linear infinite}
-  @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee-track{display:flex;width:max-content;gap:0;will-change:transform}
   .marquee-group{display:flex;align-items:center;flex-shrink:0}
   .marquee-track span.word{font-family:'Archivo Black';font-size:15px;letter-spacing:2px;color:var(--muted);padding:0 22px;white-space:nowrap}
   .marquee-track span.dot{width:6px;height:6px;border-radius:50%;background:var(--stripe);flex-shrink:0}
@@ -811,6 +810,24 @@
 
   document.getElementById('reelNext').addEventListener('click',()=>track.scrollBy({left:240,behavior:'smooth'}));
   document.getElementById('reelPrev').addEventListener('click',()=>track.scrollBy({left:-240,behavior:'smooth'}));
+
+  /* marquee: plain requestAnimationFrame loop, independent of CSS animation / OS motion settings */
+  const marqueeTrack=document.getElementById('marqueeTrack');
+  if(marqueeTrack){
+    let mPos=0, mLast=null;
+    const mSpeed=45; // px per second
+    function mTick(now){
+      if(mLast===null) mLast=now;
+      const dt=(now-mLast)/1000;
+      mLast=now;
+      mPos-=mSpeed*dt;
+      const half=marqueeTrack.scrollWidth/2;
+      if(half>0 && -mPos>=half) mPos+=half;
+      marqueeTrack.style.transform='translateX('+mPos+'px)';
+      requestAnimationFrame(mTick);
+    }
+    requestAnimationFrame(mTick);
+  }
 </script>
 </body>
 </html>
